@@ -12,24 +12,24 @@ def remove_none(model: BaseModel):
 
 T = TypeVar("T")
 
-# class WithoutNone:
-#     """Remove the fields with None from the value of this model."""
+class WithoutNone:
+   """Remove the fields with None from the value of this model."""
 
-#     __slots__ = ()
+   __slots__ = ()
 
-#     def __new__(cls, *args, **kwargs):
-#         raise TypeError("Type Annotated cannot be instantiated.")
+   def __new__(cls, *args, **kwargs):
+       raise TypeError("Type Annotated cannot be instantiated.")
 
-#     def __class_getitem__(cls, params:T) -> Annotated[T, PlainSerializer]:
-#         if isinstance(params, tuple):
-#             raise TypeError(f"WithoutNone[...] should be used with one argument, not {params}")
-#         return Annotated[params, PlainSerializer(remove_none)]
+   def __class_getitem__(cls, params:T) -> Annotated[T, PlainSerializer]:
+       if isinstance(params, tuple):
+           raise TypeError(f"WithoutNone[...] should be used with one argument, not {params}")
+       return Annotated[params, PlainSerializer(remove_none)]
 
-#     def __init_subclass__(cls, *args, **kwargs):
-#         raise TypeError("Cannot subclass {}.WithoutNone".format(cls.__module__))
+   def __init_subclass__(cls, *args, **kwargs):
+       raise TypeError("Cannot subclass {}.WithoutNone".format(cls.__module__))
 
 
-type WithoutNone[T] = Annotated[T, PlainSerializer(remove_none)]
+#  type WithoutNone[T] = Annotated[T, PlainSerializer(remove_none)]
 
 
 __all__ = [
